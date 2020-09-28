@@ -1,21 +1,31 @@
 <template>
   <div id="app">
-    <div> Current count: {{ $store.state.count }} is {{ evenOrOdd }} number</div>
+    <div> Current count: {{ count }} is {{ evenOrOdd }} number</div>
     <controls />
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapState} from 'vuex'
 import Controls from './components/Controls'
 export default {
   name: 'app',
   components:{
     Controls
   },
-  computed: mapGetters([
-    'evenOrOdd'
-  ])
+  computed: {
+    ...mapGetters(['evenOrOdd']),
+    ...mapState(['count']),
+  }
+  // computed: mapGetters([
+  //   'evenOrOdd'
+  // ]),
+  // computed: mapState({
+  //   count: 'count',
+  //   evenOrOdd: function(){
+  //     return this.$store.getters.evenOrOdd
+  //   }
+  // })
 }
 </script>
 
